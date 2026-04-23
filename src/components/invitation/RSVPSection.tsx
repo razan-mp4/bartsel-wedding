@@ -11,9 +11,9 @@ type Guest = {
 type Response = {
   guestId: string
   attending: 'YES' | 'NO' | 'MAYBE' | null
-  stayingAtVenue?: 'YES' | 'NO' | null
+stayingAtVenue?: 'YES' | 'NO' | 'MAYBE' | null
   rentingCar?: 'YES' | 'NO' | 'NOT_SURE' | null
-  needsTransfer?: 'YES' | 'NO' | null
+needsTransfer?: 'YES' | 'NO' | 'MAYBE' | null
 }
 
 type RSVPContent = {
