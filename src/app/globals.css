@@ -24,3 +24,461 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes softFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+.font-cormorant {
+  font-family: var(--font-cormorant), serif;
+}
+:root {
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-editorial: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+.music-marquee-dynamic {
+  display: inline-block;
+  min-width: max-content;
+  padding-right: 3rem;
+  animation: musicMarqueeDynamic 10s linear infinite;
+}
+
+@keyframes musicMarqueeDynamic {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(0);
+  }
+  90% {
+    transform: translateX(-35%);
+  }
+  100% {
+    transform: translateX(-35%);
+  }
+}
+.music-title-wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.music-title {
+  display: inline-block;
+  white-space: nowrap;
+  min-width: max-content;
+}
+
+.music-title-scroll {
+  animation: musicTitlePingPong var(--marquee-duration, 10s) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes musicTitlePingPong {
+  0% {
+    transform: translateX(0);
+  }
+  12% {
+    transform: translateX(0);
+  }
+  88% {
+    transform: translateX(var(--marquee-travel, 0));
+  }
+  100% {
+    transform: translateX(var(--marquee-travel, 0));
+  }
+}
+.heart-svg {
+  transform-origin: center;
+}
+
+.heart-svg-visible {
+  animation: heartBeat 2.8s ease-in-out infinite;
+}
+
+.heart-svg-hidden {
+  animation: none;
+}
+
+.heart-path {
+  fill: none;
+  stroke: #bfae92;
+  stroke-width: 9.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  will-change: stroke-dashoffset, opacity;
+}
+
+.heart-path-visible {
+  animation: heartPaintIn 3.8s ease forwards;
+}
+
+.heart-path-hidden {
+  animation: heartPaintOut 2.4s ease forwards;
+}
+
+@keyframes heartPaintIn {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 520;
+  }
+  100% {
+    opacity: 0.14;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes heartPaintOut {
+  0% {
+    opacity: 0.14;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 520;
+  }
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.018);
+  }
+  40% {
+    transform: scale(1);
+  }
+  62% {
+    transform: scale(1.035);
+  }
+  82% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.ribbon-bg {
+  transform-origin: center;
+}
+
+.ribbon-bg-visible .ribbon-path-1 {
+  animation:
+    ribbonPaintIn1 4.8s ease forwards,
+    ribbonWave1 14s ease-in-out 4.8s infinite;
+}
+
+.ribbon-bg-visible .ribbon-path-2 {
+  animation:
+    ribbonPaintIn2 5.4s ease forwards,
+    ribbonWave2 16s ease-in-out 5.4s infinite;
+}
+
+.ribbon-bg-hidden .ribbon-path-1 {
+  animation: ribbonPaintOut1 2.2s ease forwards;
+}
+
+.ribbon-bg-hidden .ribbon-path-2 {
+  animation: ribbonPaintOut2 2.2s ease forwards;
+}
+
+.ribbon-path {
+  fill: none;
+  stroke: rgba(122, 46, 42, 0.03);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  will-change: stroke-dashoffset, opacity, transform;
+}
+
+.ribbon-path-1 {
+  stroke-width: 28;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+}
+
+.ribbon-path-2 {
+  stroke-width: 22;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+}
+
+@keyframes ribbonPaintIn1 {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1800;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ribbonPaintIn2 {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1800;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ribbonPaintOut1 {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 1800;
+  }
+}
+
+@keyframes ribbonPaintOut2 {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 1800;
+  }
+}
+
+@keyframes ribbonWave1 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scaleX(1);
+  }
+  25% {
+    transform: translate3d(0, -8px, 0) rotate(-0.25deg) scaleX(1.006);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0) rotate(0.2deg) scaleX(0.998);
+  }
+  75% {
+    transform: translate3d(0, -5px, 0) rotate(-0.15deg) scaleX(1.004);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scaleX(1);
+  }
+}
+
+@keyframes ribbonWave2 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scaleX(1);
+  }
+  30% {
+    transform: translate3d(0, 7px, 0) rotate(0.22deg) scaleX(1.005);
+  }
+  55% {
+    transform: translate3d(0, -6px, 0) rotate(-0.18deg) scaleX(0.997);
+  }
+  80% {
+    transform: translate3d(0, 4px, 0) rotate(0.12deg) scaleX(1.003);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scaleX(1);
+  }
+}
+.ribbon-path-1 {
+  stroke-width: 30;
+}
+
+.ribbon-path-2 {
+  stroke-width: 24;
+}
+
+.ribbon-path-3 {
+  stroke-width: 18; /* lighter top */
+}
+
+.ribbon-path-4 {
+  stroke-width: 26; /* medium bottom */
+}
+.ribbon-bg-visible .ribbon-path-3 {
+  animation:
+    ribbonPaintIn3 5.6s ease forwards,
+    ribbonWave3 18s ease-in-out 5.6s infinite;
+}
+
+.ribbon-bg-visible .ribbon-path-4 {
+  animation:
+    ribbonPaintIn4 6s ease forwards,
+    ribbonWave4 20s ease-in-out 6s infinite;
+}
+
+.ribbon-bg-hidden .ribbon-path-3 {
+  animation: ribbonPaintOut3 2s ease forwards;
+}
+
+.ribbon-bg-hidden .ribbon-path-4 {
+  animation: ribbonPaintOut4 2s ease forwards;
+}
+@keyframes ribbonPaintIn3 {
+  from { opacity: 0; stroke-dashoffset: 1800; }
+  to { opacity: 1; stroke-dashoffset: 0; }
+}
+
+@keyframes ribbonPaintIn4 {
+  from { opacity: 0; stroke-dashoffset: 1800; }
+  to { opacity: 1; stroke-dashoffset: 0; }
+}
+
+@keyframes ribbonPaintOut3 {
+  from { opacity: 1; stroke-dashoffset: 0; }
+  to { opacity: 0; stroke-dashoffset: 1800; }
+}
+
+@keyframes ribbonPaintOut4 {
+  from { opacity: 1; stroke-dashoffset: 0; }
+  to { opacity: 0; stroke-dashoffset: 1800; }
+}
+@keyframes ribbonWave3 {
+  0%   { transform: translateY(0) rotate(0deg); }
+  30%  { transform: translateY(-6px) rotate(-0.15deg); }
+  60%  { transform: translateY(5px) rotate(0.12deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes ribbonWave4 {
+  0%   { transform: translateY(0) rotate(0deg); }
+  40%  { transform: translateY(7px) rotate(0.18deg); }
+  70%  { transform: translateY(-5px) rotate(-0.12deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+.ribbon-path-1 {
+  transform: rotate(-1deg) scaleX(1.02);
+}
+
+.ribbon-path-2 {
+  transform: rotate(1.2deg) scaleX(0.98);
+}
+
+@media (max-width: 767px) {
+  .ribbon-path-1 {
+    stroke-width: 22;
+  }
+
+  .ribbon-path-2 {
+    stroke-width: 18;
+  }
+
+  .ribbon-path-3 {
+    stroke-width: 14;
+  }
+
+  .ribbon-path-4 {
+    stroke-width: 20;
+  }
+}
+
+.travel-bg-svg {
+  transform-origin: center;
+}
+
+@media (min-width: 768px) {
+  .travel-bg-svg {
+    width: var(--travel-bg-size-md) !important;
+    height: var(--travel-bg-size-md) !important;
+  }
+}
+
+.travel-bg-svg-visible {
+  animation: travelBgFloat 3.6s ease-in-out infinite;
+}
+
+.travel-bg-svg-hidden {
+  animation: none;
+}
+
+.travel-bg-path {
+  fill: none;
+  opacity: 0;
+  stroke-dasharray: 720;
+  stroke-dashoffset: 720;
+  will-change: stroke-dashoffset, opacity;
+}
+
+.travel-bg-path-visible {
+  animation: travelBgPaintIn 2.6s ease forwards;
+}
+
+.travel-bg-path-hidden {
+  animation: travelBgPaintOut 1.5s ease forwards;
+}
+
+.travel-bg-path-delay {
+  animation-delay: 0.18s;
+}
+
+.travel-bg-path-delay-2 {
+  animation-delay: 0.3s;
+}
+
+@keyframes travelBgPaintIn {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 720;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes travelBgPaintOut {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 720;
+  }
+}
+
+@keyframes travelBgFloat {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  24% {
+    transform: scale(1.01) translateY(-3px);
+  }
+  52% {
+    transform: scale(1) translateY(2px);
+  }
+  78% {
+    transform: scale(1.008) translateY(-2px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}

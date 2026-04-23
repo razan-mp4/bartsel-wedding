@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum InvitationType {
+  INDIVIDUAL
+  FAMILY
+}
+
+enum Language {
+  uk
+  ru
+  en
+}
+
+enum GuestType {
+  ADULT
+  CHILD
+}
+
+enum AttendanceStatus {
+  YES
+  NO
+  MAYBE
+}
+
+model Invitation {
+  id          String          @id @default(cuid())
+  slug        String          @unique
+  displayName String
+  type        InvitationType
+  language    Language
+  visitedAt   DateTime?
+  visitCount  Int             @default(0)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  guests      Guest[]
+  responses   RSVP[]
+  visitLogs   VisitLog[]
+}
+
+model Guest {
+  id            String      @id @default(cuid())
+  invitationId  String
+  fullName      String
+  guestType     GuestType   @default(ADULT)
+  roleOrder     Int?
+  createdAt     DateTime    @default(now())
+
+  invitation    Invitation  @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  responses     RSVP[]
+}
+
+model RSVP {
+  id               String            @id @default(cuid())
+  invitationId     String
+  guestId          String
+  attending        AttendanceStatus?
+  stayingAtVenue   AttendanceStatus?
+  rentingCar       TravelChoice?
+  needsTransfer    AttendanceStatus?
+  mealPreference   String?
+  notes            String?
+  respondedAt      DateTime?
+  updatedAt        DateTime          @updatedAt
+
+  invitation       Invitation        @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  guest            Guest             @relation(fields: [guestId], references: [id], onDelete: Cascade)
+
+  @@unique([invitationId, guestId])
+}
+
+model VisitLog {
+  id           String      @id @default(cuid())
+  invitationId String
+  visitedAt    DateTime    @default(now())
+  userAgent    String?
+
+  invitation   Invitation  @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+}
+
+enum TravelChoice {
+  YES
+  NO
+  NOT_SURE
+}
