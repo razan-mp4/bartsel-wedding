@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import ScrollArrow from './ScrollArrow'
 
 type Props = {
   title: string
@@ -173,7 +172,6 @@ useEffect(() => {
         </div>
 
         <div className="pb-8 md:pb-10 flex justify-center">
-          <ScrollArrow />
         </div>
       </div>
     </section>
