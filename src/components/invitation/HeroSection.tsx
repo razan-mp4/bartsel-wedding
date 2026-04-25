@@ -65,23 +65,23 @@ export default function HeroSection({ title, date, verse, imageUrl }: Props) {
     img.onload = finishLoading
   }, [imageUrl])
 
-  useEffect(() => {
+useEffect(() => {
   if (showOverlay) {
+    document.documentElement.style.overflow = 'hidden'
     document.body.style.overflow = 'hidden'
-    document.body.style.height = '100vh'
   } else {
+    document.documentElement.style.overflow = ''
     document.body.style.overflow = ''
-    document.body.style.height = ''
   }
 
   return () => {
+    document.documentElement.style.overflow = ''
     document.body.style.overflow = ''
-    document.body.style.height = ''
   }
 }, [showOverlay])
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-[100svh] overflow-hidden">
       {/* BACKGROUND IMAGE */}
       <div
         className={`absolute inset-0 bg-center bg-cover transition-opacity duration-[1400ms] ease-out ${
@@ -107,7 +107,7 @@ export default function HeroSection({ title, date, verse, imageUrl }: Props) {
           showOverlay ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="relative z-10 flex min-h-screen flex-col px-2 sm:px-4 md:px-6">
+        <div className="relative z-10 flex min-h-[100svh] flex-col px-2 sm:px-4 md:px-6">
           <div className="pt-8 md:pt-10 flex justify-center">
             <p className="font-sans-ui text-[12px] md:text-[16px] tracking-[0.42em] uppercase text-transparent select-none">
               {date}
@@ -145,7 +145,7 @@ export default function HeroSection({ title, date, verse, imageUrl }: Props) {
       </div>
 
       {/* REAL HERO */}
-      <div className="relative z-10 flex min-h-screen flex-col px-2 sm:px-4 md:px-6 text-white">
+      <div className="relative z-10 flex min-h-[100svh] flex-col px-2 sm:px-4 md:px-6 text-white">
         <div className="pt-8 md:pt-10 flex justify-center">
           <p className="font-sans-ui text-[12px] md:text-[16px] tracking-[0.42em] uppercase text-white/80">
             {date}
