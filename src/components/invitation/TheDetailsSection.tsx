@@ -83,8 +83,8 @@ const palette = [
   '#d9d1c5',
   '#70853a',
   '#42572c',
-  '#000000',
   '#7d2d38',
+  '#000000',
 ] as const
 
 const sectionFade: Variants = {
