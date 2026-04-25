@@ -62,6 +62,11 @@ export default function AudioPlayerProvider({
         src: '/music/song-3.m4a',
         image: '/music/song-3.webp',
       },
+      {
+        title: 'A Thousand Years — Christina Perri',
+        src: '/music/song-4.m4a',
+        image: '/music/song-4.webp',
+      },
     ],
     []
   )
