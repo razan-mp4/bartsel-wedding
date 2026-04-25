@@ -1,4 +1,3 @@
-import HeroSection from '@/components/invitation/HeroSection'
 import InvitationIntroSection from '@/components/invitation/InvitationIntroSection'
 import MainPageShell from '@/components/invitation/MainPageShell'
 import MusicSection from '@/components/invitation/MusicSection'
@@ -45,12 +44,7 @@ export default async function InvitationPage({
       }}
     >
       <main className="pb-10">
-        <HeroSection
-          title={t.heroTitle}
-          date={t.date}
-          verse={t.verse}
-          imageUrl="/hero-wedding.webp"
-        />
+
 
         <MusicSection
           text={t.musicText}
