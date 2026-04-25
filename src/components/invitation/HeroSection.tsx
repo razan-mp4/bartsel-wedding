@@ -111,8 +111,7 @@ useEffect(() => {
               </p>
             </div>
 
-            <div className="flex-1 flex flex-col items-center justify-center text-center">
-              <h1 className="w-full max-w-[1800px] leading-[0.95] font-serif-display italic font-medium text-[#6f7f57]">
+<div className="flex-1 flex flex-col items-center justify-center text-center -mt-10 md:-mt-16">              <h1 className="w-full max-w-[1800px] leading-[0.95] font-serif-display italic font-medium text-[#6f7f57]">
                 <span className="inline-flex items-center whitespace-nowrap text-[clamp(1.6rem,6.8vw,6rem)]">
                   <span className="relative top-[-0.34em] invisible">
                     {leftName || 'Name'}

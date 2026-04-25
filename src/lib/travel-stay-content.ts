@@ -311,7 +311,7 @@ export const travelStayContent: Record<'en' | 'uk' | 'ru', TravelStayContent> = 
         ],
       },
       {
-        title: 'Оренда автомобиля',
+        title: 'Аренда автомобиля',
         icon: 'car',
         paragraphs: [
           'Чтобы по-настоящему прочувствовать красоту Грузии, мы рекомендуем арендовать автомобиль.',

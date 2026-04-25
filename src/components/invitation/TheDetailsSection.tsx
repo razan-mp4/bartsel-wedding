@@ -81,10 +81,9 @@ const dressCodeSlides = [
 const palette = [
   '#ece8e1',
   '#d9d1c5',
-  '#988061',
   '#70853a',
   '#42572c',
-  '#574345',
+  '#000000',
   '#7d2d38',
 ] as const
 
