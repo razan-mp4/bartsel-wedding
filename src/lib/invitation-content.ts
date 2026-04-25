@@ -109,12 +109,15 @@ faqItems: [
       'We kindly ask guests to arrive by 14:00, allowing enough time to settle in and enjoy the beginning of the day.',
     ],
   },
-  {
-    question: 'Is there a dress code?',
-    answer: [
-      'We would be so grateful if you chose an elegant and festive look that feels beautiful and comfortable for you. More detailed guidance may be shared closer to the day.',
-    ],
-  },
+{
+  question: 'What is the dress code?',
+  answer: [
+    'We would be grateful if you chose an elegant, festive look that supports the visual atmosphere of the day. Soft neutral shades, natural textures, deep green, and muted burgundy are especially welcome.',
+    'For ladies: flowing, elegant silhouettes in soft, natural fabrics. Kindly avoid bright colours, bold prints, and strong contrasts.',
+    'For gentlemen: classic black suits with a white shirt.',
+    'You can find more detailed guidance in the “The Details” section.',
+  ],
+},
 ],
 detailsPage: {
   introParagraphs: [
@@ -306,12 +309,15 @@ faqItems: [
       'Ми будемо вдячні, якщо гості прибудуть до 14:00, щоб мати достатньо часу спокійно влаштуватися і насолодитися початком дня.',
     ],
   },
-  {
-    question: 'Чи є дрес-код?',
-    answer: [
-      'Ми будемо дуже раді, якщо ви оберете святковий та елегантний образ, у якому почуватиметеся красиво й комфортно. Більш детальні рекомендації можуть з’явитися ближче до дати.',
-    ],
-  },
+{
+  question: 'Який дрес-код?',
+  answer: [
+    'Ми будемо щиро вдячні, якщо ви оберете святковий та елегантний образ, який підтримає візуальну атмосферу цього дня. Особливо доречними будуть м’які нейтральні відтінки, природні фактури, глибокий зелений і приглушений бордовий.',
+    'Для жінок — легкі, елегантні силуети з натуральних тканин. Будь ласка, уникайте яскравих кольорів, активних принтів і сильних контрастів.',
+    'Для чоловіків — класичні чорні костюми з білою сорочкою.',
+    'Більше деталей ви знайдете в розділі «Деталі події».',
+  ],
+},
 ],
 detailsPage: {
   introParagraphs: [
@@ -517,12 +523,15 @@ faqItems: [
       'Мы будем благодарны, если гости прибудут к 14:00, чтобы было достаточно времени спокойно устроиться и насладиться началом дня.',
     ],
   },
-  {
-    question: 'Есть ли дресс-код?',
-    answer: [
-      'Нам будет очень приятно, если вы выберете праздничный и элегантный образ, в котором будете чувствовать себя красиво и комфортно. Более подробные рекомендации могут появиться ближе к дате.',
-    ],
-  },
+{
+  question: 'Какой дресс-код?',
+  answer: [
+    'Мы будем искренне благодарны, если вы выберете праздничный и элегантный образ, который поддержит визуальную атмосферу этого дня. Особенно уместны мягкие нейтральные оттенки, натуральные фактуры, глубокий зелёный и приглушённый бордовый.',
+    'Для дам — лёгкие, элегантные силуэты из натуральных тканей. Пожалуйста, избегайте ярких цветов, активных принтов и сильных контрастов.',
+    'Для мужчин — классические чёрные костюмы с белой рубашкой.',
+    'Больше деталей вы найдёте в разделе «Детали события».',
+  ],
+},
 ],
 detailsPage: {
   introParagraphs: [
