@@ -130,11 +130,7 @@ export default function AdminDashboardPage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f7f3ee]">
-      {/* background image */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.12]"
-        style={{ backgroundImage: "url('/sections/love-story-5.webp')" }}
-      />
+
       {/* soft white overlay */}
       <div className="pointer-events-none absolute inset-0 bg-white/86" />
 

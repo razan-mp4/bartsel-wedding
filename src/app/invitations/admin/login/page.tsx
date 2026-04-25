@@ -35,10 +35,7 @@ export default function AdminLoginPage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f7f3ee]">
-      <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.1]"
-        style={{ backgroundImage: "url('/sections/love-story-5.webp')" }}
-      />
+
       <div className="pointer-events-none absolute inset-0 bg-white/88" />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center p-6">
