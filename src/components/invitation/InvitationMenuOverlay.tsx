@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useAudioPlayer } from './AudioPlayerProvider'
 
@@ -63,6 +64,9 @@ export default function InvitationMenuOverlay({
   onClose,
   labels,
 }: Props) {
+  const router = useRouter()
+  const pathname = usePathname()
+
   const { currentTrack, isPlaying, toggle, previous, next } = useAudioPlayer()
   const [mounted, setMounted] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -70,6 +74,7 @@ export default function InvitationMenuOverlay({
   useEffect(() => {
     if (open) {
       setMounted(true)
+
       const originalOverflow = document.body.style.overflow
       document.body.style.overflow = 'hidden'
 
@@ -79,22 +84,56 @@ export default function InvitationMenuOverlay({
         cancelAnimationFrame(id)
         document.body.style.overflow = originalOverflow
       }
-    } else {
-      setVisible(false)
-      const timeout = setTimeout(() => setMounted(false), 350)
-      document.body.style.overflow = ''
-      return () => clearTimeout(timeout)
+    }
+
+    setVisible(false)
+    document.body.style.overflow = ''
+
+    const timeout = window.setTimeout(() => {
+      setMounted(false)
+    }, 350)
+
+    return () => {
+      window.clearTimeout(timeout)
     }
   }, [open])
 
   if (!mounted) return null
 
+  const homePath = `/invitations/${slug}`
+
+  const menuItems = [
+    { n: '01', href: homePath, title: labels.home },
+    { n: '02', href: `${homePath}/our-love-story`, title: labels.loveStory },
+    { n: '03', href: `${homePath}/the-details`, title: labels.details },
+    { n: '04', href: `${homePath}/travel-stay`, title: labels.travelStay },
+    { n: '05', href: `${homePath}/questions-answers`, title: labels.questionsAnswers },
+  ]
+
   const linkClass =
     'group flex items-baseline justify-center gap-4 text-[#6f7f57] transition hover:opacity-75'
 
   const numberClass = 'font-sans-ui text-[16px] md:text-[20px] opacity-70'
+
   const titleClass =
     'font-serif-display text-[28px] sm:text-[34px] md:text-[48px] leading-[1.05] text-center'
+
+  const handleRsvpClick = () => {
+    onClose()
+
+    if (pathname === homePath) {
+      window.setTimeout(() => {
+        document.getElementById('rsvp')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }, 350)
+
+      return
+    }
+
+    router.push(`${homePath}#rsvp`)
+  }
 
   return (
     <div
@@ -118,53 +157,32 @@ export default function InvitationMenuOverlay({
 
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-4xl space-y-7 md:space-y-8">
-            {[
-  { n: '01', href: `/invitations/${slug}`, title: labels.home },
-  { n: '02', href: `/invitations/${slug}/our-love-story`, title: labels.loveStory },
-  { n: '03', href: `/invitations/${slug}/the-details`, title: labels.details },
-  { n: '04', href: `/invitations/${slug}/travel-stay`, title: labels.travelStay },
-  { n: '05', href: `/invitations/${slug}/questions-answers`, title: labels.questionsAnswers },
-].map((item, index) => (
-  <Link
-    key={item.href}
-    href={item.href}
-    className={`${linkClass} transition-all duration-500 ease-out ${
-      visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-    }`}
-    style={{ transitionDelay: `${index * 45}ms` }}
-    onClick={onClose}
-  >
-    <span className={numberClass}>{item.n}</span>
-    <span className={titleClass}>{item.title}</span>
-  </Link>
-))}
+            {menuItems.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${linkClass} transition-all duration-500 ease-out ${
+                  visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                }`}
+                style={{ transitionDelay: `${index * 45}ms` }}
+                onClick={onClose}
+              >
+                <span className={numberClass}>{item.n}</span>
+                <span className={titleClass}>{item.title}</span>
+              </Link>
+            ))}
 
-<button
-  type="button"
-  className={`${linkClass} w-full transition-all duration-500 ease-out ${
-    visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-  }`}
-  style={{ transitionDelay: `225ms` }}
-  onClick={() => {
-    onClose()
-
-    const homePath = `/invitations/${slug}`
-
-    if (window.location.pathname === homePath) {
-      setTimeout(() => {
-        const el = document.getElementById('rsvp')
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      }, 350)
-    } else {
-      window.location.href = `${homePath}#rsvp`
-    }
-  }}
->
-  <span className={numberClass}>06</span>
-  <span className={titleClass}>{labels.rsvp}</span>
-</button>
+            <button
+              type="button"
+              className={`${linkClass} w-full transition-all duration-500 ease-out ${
+                visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+              }`}
+              style={{ transitionDelay: '225ms' }}
+              onClick={handleRsvpClick}
+            >
+              <span className={numberClass}>06</span>
+              <span className={titleClass}>{labels.rsvp}</span>
+            </button>
           </div>
         </div>
 
