@@ -1,6 +1,6 @@
 'use client'
-import { ChevronLeft } from 'lucide-react'
 
+import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 
 type Props = {
@@ -18,26 +18,38 @@ export default function InvitationHeader({
 }: Props) {
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
       }`}
+      style={{
+        top: 0,
+      }}
     >
-      <div className="border-b border-[#d8d0c3] bg-[#f3efe8]/82 backdrop-blur-md">
+      {/* This covers the Telegram/Safari floating top gap */}
+      <div
+        className="absolute left-0 right-0 bg-[#f3efe8]/92 backdrop-blur-md"
+        style={{
+          top: '-120px',
+          height: '120px',
+        }}
+      />
+
+      <div className="relative border-b border-[#d8d0c3] bg-[#f3efe8]/92 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 md:px-5">
           <div className="flex h-[68px] items-center justify-between">
-            <div className="w-12 flex items-center justify-start">
+            <div className="flex w-12 items-center justify-start">
               {showBack ? (
-<Link
-  href={backHref}
-  className="flex items-center justify-center text-[#6f7f57]"
-  aria-label="Back"
->
-  <ChevronLeft className="h-7 w-7 md:h-8 md:w-8" strokeWidth={1.8} />
-</Link>
+                <Link
+                  href={backHref}
+                  className="flex items-center justify-center text-[#6f7f57]"
+                  aria-label="Back"
+                >
+                  <ChevronLeft className="h-7 w-7 md:h-8 md:w-8" strokeWidth={1.8} />
+                </Link>
               ) : null}
             </div>
 
-            <div className="w-12 flex items-center justify-end">
+            <div className="flex w-12 items-center justify-end">
               <button
                 type="button"
                 onClick={onOpenMenu}
