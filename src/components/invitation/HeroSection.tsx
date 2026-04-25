@@ -30,21 +30,46 @@ export default function HeroSection({ title, date, verse, imageUrl }: Props) {
   const leftName = parts[0]?.trim() ?? ''
   const rightName = parts[1]?.trim() ?? ''
 
-  const [imageLoaded, setImageLoaded] = useState(false)
-  const [showOverlay, setShowOverlay] = useState(true)
-  const [renderOverlay, setRenderOverlay] = useState(true)
+const [imageLoaded, setImageLoaded] = useState(false)
+const [showOverlay, setShowOverlay] = useState(true)
+const [renderOverlay, setRenderOverlay] = useState(true)
+const [released, setReleased] = useState(false)
 
-  useEffect(() => {
-    if (!showOverlay) return
+function releaseOverlay() {
+  if (released) return
 
-    document.documentElement.style.overflow = 'hidden'
-    document.body.style.overflow = 'hidden'
+  setReleased(true)
+  setImageLoaded(true)
+  setShowOverlay(false)
 
-    return () => {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-    }
-  }, [showOverlay])
+  setTimeout(() => {
+    setRenderOverlay(false)
+  }, 700)
+}
+
+useEffect(() => {
+  const fallback = window.setTimeout(() => {
+    releaseOverlay()
+  }, 2500)
+
+  return () => window.clearTimeout(fallback)
+}, [released])
+
+useEffect(() => {
+  if (!showOverlay) {
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+    return
+  }
+
+  document.documentElement.style.overflow = 'hidden'
+  document.body.style.overflow = 'hidden'
+
+  return () => {
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+  }
+}, [showOverlay])
 
   function handleImageLoad() {
     setImageLoaded(true)
@@ -60,14 +85,15 @@ export default function HeroSection({ title, date, verse, imageUrl }: Props) {
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-black">
-      <img
-        src={imageUrl}
-        alt=""
-        onLoad={handleImageLoad}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
+<img
+  src={imageUrl}
+  alt=""
+  onLoad={releaseOverlay}
+  onError={releaseOverlay}
+  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
+    imageLoaded ? 'opacity-100' : 'opacity-0'
+  }`}
+/>
 
       <div className="absolute inset-0 bg-black/28" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/30" />
