@@ -53,25 +53,23 @@ function StoryImage({
   delay?: number
   sizes?: string
 }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 28, rotate: 0.4 }}
-      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.9, ease: 'easeOut', delay }}
-      className={`relative overflow-hidden bg-[#6f7f57] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.08)] ${className ?? ''}`}
-    >
-      <div className="relative h-full w-full overflow-hidden">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-cover grayscale transition-transform duration-700 hover:scale-[1.03]"
-          sizes={sizes}
-        />
-      </div>
-    </motion.div>
-  )
+return (
+  <motion.div
+    initial={{ opacity: 0, y: 28, rotate: 0.4 }}
+    whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+    viewport={{ once: true, amount: 0.18 }}
+    transition={{ duration: 0.9, ease: 'easeOut', delay }}
+    className={`relative overflow-hidden bg-[#6f7f57] border-[12px] border-[#6f7f57] shadow-[0_18px_60px_rgba(0,0,0,0.08)] ${className ?? ''}`}
+  >
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className="object-cover grayscale transition-transform duration-700 hover:scale-[1.03]"
+      sizes={sizes}
+    />
+  </motion.div>
+)
 }
 
 export default function LoveStorySection({
