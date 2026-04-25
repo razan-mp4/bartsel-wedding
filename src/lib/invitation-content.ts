@@ -30,9 +30,9 @@ export const invitationContent = {
     nextSong: 'Next',
     introGreetingGuest: 'Dear',
     introGreetingFamily: 'Dear',
-    introLineOne: 'We warmly invite you to be with us on the day of our wedding.',
-    introLineTwo:
-      'Your presence would mean so much to us as we begin this new chapter together.',
+introLineOne: 'Celebrate this day with us.',
+introLineTwo:
+  'Having you there as we begin this new chapter would mean so much to us.',
     introSaveDate: 'Save the date',
     calendarMonthYear: 'September 2026',
     calendarWeekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
@@ -236,9 +236,9 @@ rsvpSection: {
     nextSong: 'Наступна',
     introGreetingGuest: 'Дорогий',
     introGreetingFamily: 'Дорога',
-    introLineOne: 'Ми щиро запрошуємо вас бути поруч із нами у день нашого весілля.',
-    introLineTwo:
-      'Ваша присутність буде для нас особливим благословенням, коли ми розпочинатимемо цей новий розділ нашого життя.',
+introLineOne: 'Розділіть із нами день нашого весілля.',
+introLineTwo:
+  'Для нас дуже цінно бути разом із вами в цей особливий момент і на початку нового етапу.',
     introSaveDate: 'Збережіть цю дату',
     calendarMonthYear: 'Вересень 2026',
     calendarWeekdays: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
@@ -435,9 +435,9 @@ rsvpSection: {
     nextSong: 'Следующая',
     introGreetingGuest: 'Дорогой',
     introGreetingFamily: 'Дорогая',
-    introLineOne: 'Мы искренне приглашаем вас быть рядом с нами в день нашей свадьбы.',
-    introLineTwo:
-      'Ваше присутствие будет для нас особым благословением, когда мы будем начинать эту новую главу нашей жизни.',
+introLineOne: 'Разделите с нами день нашей свадьбы.',
+introLineTwo:
+  'Для нас очень важно быть рядом с вами в этот особенный момент и в начале новой главы нашей жизни.',
     introSaveDate: 'Сохраните эту дату',
     calendarMonthYear: 'Сентябрь 2026',
     calendarWeekdays: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
