@@ -4,6 +4,26 @@ import { invitationContent } from '@/lib/invitation-content'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const invitation = await prisma.invitation.findUnique({
+    where: { slug: params.slug },
+  })
+
+  if (!invitation) return {}
+
+  const t = invitationContent[invitation.language]
+
+  return {
+    title: t.details,
+    openGraph: {
+      title: t.details,
+      images: [{ url: '/og-image.jpg' }],
+    },
+  }
+}
+
+
 export default async function TheDetailsPage({
   params,
 }: {

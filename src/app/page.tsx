@@ -1,5 +1,16 @@
 import Link from 'next/link'
 
+
+export const metadata = {
+  title: 'Bartsel Wedding',
+  description: 'Private wedding invitation',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
+
+
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f7f3ee]">

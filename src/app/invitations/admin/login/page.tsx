@@ -3,6 +3,16 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
+
+export const metadata = {
+  title: 'Bartsel Wedding Admin',
+  description: 'Private wedding invitation',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
+
 export default function AdminLoginPage() {
   const router = useRouter()
   const [username, setUsername] = useState('')

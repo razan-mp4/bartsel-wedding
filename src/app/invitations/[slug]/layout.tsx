@@ -6,6 +6,13 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { ReactNode } from 'react'
 
+export const metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
+
 export default async function InvitationLayout({
   children,
   params,
