@@ -65,14 +65,14 @@ export async function generateMetadata({
     openGraph: {
       title: titles[lang],
       description: descriptions[lang],
-      images: [
-        {
-          url: '/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: titles[lang],
-        },
-      ],
+images: [
+  {
+    url: '/og-image.jpg',
+    width: 1200,
+    height: 630,
+    alt: 'Wedding Invitation',
+  },
+],
     },
   }
 }

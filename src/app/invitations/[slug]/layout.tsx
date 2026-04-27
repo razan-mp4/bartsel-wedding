@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { ReactNode } from 'react'
 
 export const metadata = {
+  metadataBase: new URL('https://bartsel.wedding'),
   robots: {
     index: false,
     follow: false,
