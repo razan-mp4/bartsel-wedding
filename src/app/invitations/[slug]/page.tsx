@@ -130,26 +130,27 @@ export default async function InvitationPage({
           pauseLabel={t.pauseMusic}
         />
 
-        <InvitationIntroSection
-          slug={invitation.slug}
-          guestName={
-            invitation.type === 'FAMILY'
-              ? invitation.displayName
-              : invitation.guests?.[0]?.fullName
-          }
-          guestGender={invitation.guests?.[0]?.gender}
-          isFamily={invitation.type === 'FAMILY'}
-          day="06"
-          greetingGuest={t.introGreetingGuest}
-          greetingFamily={t.introGreetingFamily}
-          lineOne={t.introLineOne}
-          lineTwo={t.introLineTwo}
-          saveDateLabel={t.introSaveDate}
-          monthYear={t.calendarMonthYear}
-          weekdays={t.calendarWeekdays}
-          familySuffix={t.familySuffix}
-          answerButtonLabel={t.answerButtonLabel}
-        />
+<InvitationIntroSection
+  slug={invitation.slug}
+  guestName={
+    invitation.type === 'FAMILY'
+      ? invitation.displayName
+      : invitation.guests?.[0]?.fullName
+  }
+  guestGender={invitation.guests?.[0]?.gender}
+  language={invitation.language}
+  isFamily={invitation.type === 'FAMILY'}
+  day="06"
+  greetingGuest={t.introGreetingGuest}
+  greetingFamily={t.introGreetingFamily}
+  lineOne={t.introLineOne}
+  lineTwo={t.introLineTwo}
+  saveDateLabel={t.introSaveDate}
+  monthYear={t.calendarMonthYear}
+  weekdays={t.calendarWeekdays}
+  familySuffix={t.familySuffix}
+  answerButtonLabel={t.answerButtonLabel}
+/>
 
         <SectionLinks
           introText={t.sectionsIntro}

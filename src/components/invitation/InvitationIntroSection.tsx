@@ -17,6 +17,7 @@ type Props = {
   slug: string
   guestName?: string
   guestGender?: 'MALE' | 'FEMALE' | null
+  language: 'uk' | 'ru' | 'en'
   isFamily?: boolean
   day: string
   greetingGuest: string
@@ -176,7 +177,9 @@ function RibbonsBackground() {
 export default function InvitationIntroSection({
   slug,
   guestName,
-  isFamily,
+  guestGender,
+  language,
+  isFamily = false,
   day,
   greetingGuest,
   greetingFamily,
@@ -213,11 +216,15 @@ export default function InvitationIntroSection({
     return () => observer.disconnect()
   }, [])
 
-  const greeting = guestName
-    ? isFamily
-      ? `${greetingFamily} ${guestName},`
-      : `${greetingGuest} ${guestName},`
-    : `${greetingGuest},`
+const greetingWord = getGreeting({
+  isFamily,
+  language,
+  gender: guestGender,
+})
+
+const greeting = guestName
+  ? `${greetingWord} ${guestName},`
+  : `${greetingWord},`
 
 
 
