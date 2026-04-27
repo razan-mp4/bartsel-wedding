@@ -16,6 +16,7 @@ type Response = {
 type Props = {
   slug: string
   guestName?: string
+  guestGender?: 'MALE' | 'FEMALE' | null
   isFamily?: boolean
   day: string
   greetingGuest: string
@@ -27,6 +28,26 @@ type Props = {
   weekdays: readonly string[]
   familySuffix: string
   answerButtonLabel: string
+}
+
+function getGreeting({
+  isFamily,
+  language,
+  gender,
+}: {
+  isFamily: boolean
+  language: 'uk' | 'ru' | 'en'
+  gender?: 'MALE' | 'FEMALE' | null
+}) {
+  if (isFamily) {
+    if (language === 'uk') return 'Дорогі'
+    if (language === 'ru') return 'Дорогие'
+    return 'Dear'
+  }
+
+  if (language === 'uk') return gender === 'FEMALE' ? 'Дорога' : 'Дорогий'
+  if (language === 'ru') return gender === 'FEMALE' ? 'Дорогая' : 'Дорогой'
+  return 'Dear'
 }
 
 function RibbonsBackground() {

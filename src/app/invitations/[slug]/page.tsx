@@ -137,6 +137,7 @@ export default async function InvitationPage({
               ? invitation.displayName
               : invitation.guests?.[0]?.fullName
           }
+          guestGender={invitation.guests?.[0]?.gender}
           isFamily={invitation.type === 'FAMILY'}
           day="06"
           greetingGuest={t.introGreetingGuest}

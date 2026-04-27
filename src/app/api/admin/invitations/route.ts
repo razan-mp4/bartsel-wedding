@@ -6,6 +6,7 @@ import { z } from 'zod'
 const guestSchema = z.object({
   fullName: z.string().min(1),
   guestType: z.enum(['ADULT', 'CHILD']).default('ADULT'),
+  gender: z.enum(['MALE', 'FEMALE']).optional(),
 })
 
 const invitationSchema = z.object({
@@ -13,6 +14,7 @@ const invitationSchema = z.object({
   language: z.enum(['uk', 'ru', 'en']),
   familyName: z.string().optional(),
   individualName: z.string().optional(),
+  individualGender: z.enum(['MALE', 'FEMALE']).optional(),
   guests: z.array(guestSchema).min(1),
 })
 
@@ -39,7 +41,14 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const { type, language, familyName, individualName, guests } = parsed.data
+  const {
+    type,
+    language,
+    familyName,
+    individualName,
+    individualGender,
+    guests,
+  } = parsed.data
 
   let displayName = ''
   let finalGuests = guests
@@ -53,12 +62,20 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (!individualGender) {
+      return NextResponse.json(
+        { error: 'Gender is required for individual invitation' },
+        { status: 400 }
+      )
+    }
+
     displayName = individualName.trim()
 
     finalGuests = [
       {
         fullName: individualName.trim(),
         guestType: 'ADULT',
+        gender: individualGender,
       },
     ]
 
@@ -73,7 +90,17 @@ export async function POST(request: NextRequest) {
 
     displayName = familyName.trim()
 
-    const hasAdult = finalGuests.some((g) => g.guestType === 'ADULT')
+    const cleanGuests = finalGuests.filter((guest) => guest.fullName.trim())
+
+    if (cleanGuests.length < 1) {
+      return NextResponse.json(
+        { error: 'Please add at least one family member' },
+        { status: 400 }
+      )
+    }
+
+    const hasAdult = cleanGuests.some((guest) => guest.guestType === 'ADULT')
+
     if (!hasAdult) {
       return NextResponse.json(
         { error: 'Family invitation must include at least one adult' },
@@ -81,25 +108,26 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    finalGuests = cleanGuests
+
     const words = displayName.split(/\s+/)
 
     if (language === 'en') {
-      // Handle "Odemchuk Family"
-      if (words.length >= 2 && words[words.length - 1].toLowerCase() === 'family') {
+      if (
+        words.length >= 2 &&
+        words[words.length - 1].toLowerCase() === 'family'
+      ) {
         const surname = words.slice(0, -1).join(' ')
         baseSlug = `${slugify(surname)}-family`
       } else {
-        // If user didn't type "Family"
         baseSlug = `${slugify(displayName)}-family`
       }
     } else {
-      // UK / RU → take LAST word
       const lastWord = words[words.length - 1]
       baseSlug = `${slugify(lastWord)}-family`
     }
   }
 
-  // Ensure unique slug
   let slug = baseSlug
   let counter = 2
 
@@ -116,8 +144,9 @@ export async function POST(request: NextRequest) {
       language,
       guests: {
         create: finalGuests.map((guest, index) => ({
-          fullName: guest.fullName,
+          fullName: guest.fullName.trim(),
           guestType: guest.guestType,
+          gender: guest.gender,
           roleOrder: index + 1,
         })),
       },
@@ -127,8 +156,7 @@ export async function POST(request: NextRequest) {
     },
   })
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
   return NextResponse.json({
     ok: true,

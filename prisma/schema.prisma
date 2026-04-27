@@ -23,6 +23,11 @@ enum GuestType {
   CHILD
 }
 
+enum GuestGender {
+  MALE
+  FEMALE
+}
+
 enum AttendanceStatus {
   YES
   NO
@@ -46,14 +51,15 @@ model Invitation {
 }
 
 model Guest {
-  id            String      @id @default(cuid())
+  id            String       @id @default(cuid())
   invitationId  String
   fullName      String
-  guestType     GuestType   @default(ADULT)
+  guestType     GuestType    @default(ADULT)
+  gender        GuestGender?
   roleOrder     Int?
-  createdAt     DateTime    @default(now())
+  createdAt     DateTime     @default(now())
 
-  invitation    Invitation  @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  invitation    Invitation   @relation(fields: [invitationId], references: [id], onDelete: Cascade)
   responses     RSVP[]
 }
 

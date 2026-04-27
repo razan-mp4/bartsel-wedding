@@ -8,6 +8,8 @@ type GuestInput = {
   guestType: 'ADULT' | 'CHILD'
 }
 
+const [individualGender, setIndividualGender] = useState<'MALE' | 'FEMALE'>('MALE')
+
 export default function NewInvitationClient() {
   const [type, setType] = useState<'INDIVIDUAL' | 'FAMILY'>('INDIVIDUAL')
   const [language, setLanguage] = useState<'uk' | 'ru' | 'en'>('en')
@@ -82,12 +84,19 @@ export default function NewInvitationClient() {
         return
       }
 
-      payload = {
-        type,
-        language,
-        individualName: individualName.trim(),
-        guests: [{ fullName: individualName.trim(), guestType: 'ADULT' }],
-      }
+payload = {
+  type,
+  language,
+  individualName: individualName.trim(),
+  individualGender,
+  guests: [
+    {
+      fullName: individualName.trim(),
+      guestType: 'ADULT',
+      gender: individualGender,
+    },
+  ],
+}
     } else {
       const cleanedMembers = familyMembers.filter((member) => member.fullName.trim())
 
@@ -137,6 +146,7 @@ export default function NewInvitationClient() {
     setFamilyName('')
     setFamilyMembers([{ fullName: '', guestType: 'ADULT' }])
     setType('INDIVIDUAL')
+    setIndividualGender('MALE')
     setLanguage('en')
   }
 
@@ -235,6 +245,35 @@ export default function NewInvitationClient() {
                 onChange={(e) => setIndividualName(e.target.value)}
                 placeholder={examples.individual}
               />
+              <div className="space-y-2">
+  <label className="font-sans-ui text-sm text-[#8b806d]">Gender</label>
+
+  <div className="flex gap-3">
+    <button
+      type="button"
+      onClick={() => setIndividualGender('MALE')}
+      className={`rounded-full px-5 py-2.5 text-sm transition ${
+        individualGender === 'MALE'
+          ? 'bg-[#7a2e2a] text-white'
+          : 'border border-[#d9cdc1] bg-white text-[#7a2e2a]'
+      }`}
+    >
+      Man
+    </button>
+
+    <button
+      type="button"
+      onClick={() => setIndividualGender('FEMALE')}
+      className={`rounded-full px-5 py-2.5 text-sm transition ${
+        individualGender === 'FEMALE'
+          ? 'bg-[#7a2e2a] text-white'
+          : 'border border-[#d9cdc1] bg-white text-[#7a2e2a]'
+      }`}
+    >
+      Woman
+    </button>
+  </div>
+</div>
             </div>
           ) : (
             <>
