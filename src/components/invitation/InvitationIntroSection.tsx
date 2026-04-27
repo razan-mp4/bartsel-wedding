@@ -41,7 +41,7 @@ function getGreeting({
   gender?: 'MALE' | 'FEMALE' | null
 }) {
   if (isFamily) {
-    if (language === 'uk') return 'Дорогі'
+    if (language === 'uk') return 'Дорога'
     if (language === 'ru') return 'Дорогие'
     return 'Dear'
   }
