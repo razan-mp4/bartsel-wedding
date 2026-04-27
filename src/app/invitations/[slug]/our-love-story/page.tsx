@@ -5,20 +5,50 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+
   const invitation = await prisma.invitation.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   })
 
-  if (!invitation) return {}
+  if (!invitation) {
+    return {
+      title: 'Our Love Story',
+      robots: {
+        index: false,
+        follow: false,
+      },
+    }
+  }
 
   const t = invitationContent[invitation.language]
 
   return {
     title: t.loveStory,
+    robots: {
+      index: false,
+      follow: false,
+    },
     openGraph: {
       title: t.loveStory,
-      images: [{ url: '/og-image.jpg' }],
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: t.loveStory,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t.loveStory,
+      images: ['/og-image.jpg'],
     },
   }
 }
