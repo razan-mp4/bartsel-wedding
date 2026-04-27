@@ -8,12 +8,12 @@ type GuestInput = {
   guestType: 'ADULT' | 'CHILD'
 }
 
-const [individualGender, setIndividualGender] = useState<'MALE' | 'FEMALE'>('MALE')
+
 
 export default function NewInvitationClient() {
   const [type, setType] = useState<'INDIVIDUAL' | 'FAMILY'>('INDIVIDUAL')
   const [language, setLanguage] = useState<'uk' | 'ru' | 'en'>('en')
-
+const [individualGender, setIndividualGender] = useState<'MALE' | 'FEMALE'>('MALE')
   const [individualName, setIndividualName] = useState('')
   const [familyName, setFamilyName] = useState('')
   const [familyMembers, setFamilyMembers] = useState<GuestInput[]>([
