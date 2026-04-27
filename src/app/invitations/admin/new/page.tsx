@@ -3,16 +3,6 @@
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
-
-export const metadata = {
-  title: 'Bartsel Wedding Admin',
-  description: 'Private wedding invitation',
-  robots: {
-    index: false,
-    follow: false,
-  },
-}
-
 type GuestInput = {
   fullName: string
   guestType: 'ADULT' | 'CHILD'

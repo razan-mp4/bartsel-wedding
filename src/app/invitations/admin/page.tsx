@@ -3,15 +3,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
 
-export const metadata = {
-  title: 'Bartsel Wedding Admin',
-  description: 'Private wedding invitation',
-  robots: {
-    index: false,
-    follow: false,
-  },
-}
-
 type Guest = {
   id: string
   fullName: string
