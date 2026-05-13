@@ -179,7 +179,7 @@ answerButtonLabel: 'Give Answer',
 rsvpSection: {
   title: 'RSVP',
   subtitle: 'We would be so happy to celebrate this day with you.',
-  deadlineText: 'We kindly ask you to complete the form by 10 May 2026.',
+  deadlineText: 'We kindly ask you to complete the form by 31 May 2026.',
 
   attendingQuestion: 'Will you be able to join us on this day?',
   attendingQuestionFamily: 'Will this guest be able to join us on this day?',
@@ -378,7 +378,7 @@ answerButtonLabel: 'Дати відповідь',
 rsvpSection: {
   title: 'RSVP',
   subtitle: 'Ми будемо дуже раді розділити цей день разом із вами.',
-  deadlineText: 'Будь ласка, заповніть форму до 10 травня 2026 року.',
+  deadlineText: 'Будь ласка, заповніть форму до 31 травня 2026 року.',
 
   attendingQuestion: 'Чи зможете ви бути з нами цього дня?',
   attendingQuestionFamily: 'Чи зможе цей гість бути з нами цього дня?',
@@ -592,7 +592,7 @@ answerButtonLabel: 'Дать ответ',
 rsvpSection: {
   title: 'RSVP',
   subtitle: 'Мы были бы очень счастливы разделить этот день вместе с вами.',
-  deadlineText: 'Пожалуйста, заполните форму до 10 мая 2026 года.',
+  deadlineText: 'Пожалуйста, заполните форму до 31 мая 2026 года.',
 
   attendingQuestion: 'Сможете ли вы быть с нами в этот день?',
   attendingQuestionFamily: 'Сможет ли этот гость быть с нами в этот день?',
